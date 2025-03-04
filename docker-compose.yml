@@ -1,0 +1,39 @@
+services:
+  d_next:
+    image: nikoxing/mi-proyecto:v1.0.0  # Usa la imagen ya construida en Docker Hub
+    restart: always  # Reinicia en caso de fallo
+    ports:
+      - "127.0.0.1:4000:3001"
+    depends_on:
+      database:
+        condition: service_healthy
+    networks:
+      - app_network
+
+  database:
+    image: mysql:8.0
+    container_name: database
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    command: --authentication_policy=caching_sha2_password
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      retries: 3
+    tmpfs:
+      - /var/run/mysqld  # Mejora rendimiento al evitar escritura en disco
+    networks:
+      - app_network
+
+volumes:
+  mysql_data:
+
+networks:
+  app_network:
+
