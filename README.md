@@ -1,21 +1,25 @@
-mi-proyecto
-Este repositorio contiene el entorno de trabajo en Docker para el proyecto, sin necesidad de contar con todos los archivos del proyecto base. Aquí se explica la estructura del entorno, la configuración de los archivos clave y las instrucciones para descargar y utilizar la imagen desde Docker Hub.
+# mi-proyecto
 
-3️⃣ Estructura del Entorno de Trabajo (mi-proyecto)
-Este es el entorno donde se ejecuta el proyecto en Docker, permitiendo trabajar sin necesidad de disponer de todos los archivos del proyecto base.
+Este repositorio contiene el entorno de trabajo en Docker para el proyecto, permitiendo ejecutar la aplicación sin necesidad de disponer de todos los archivos del proyecto base.
 
-📂 Estructura de Archivos
-bash
-Copiar
+---
+
+## 3️⃣ Estructura del Entorno de Trabajo
+
+Este es el entorno donde se ejecuta el proyecto en Docker.
+
+### 📂 Estructura de Archivos
+
+```bash
 mi-proyecto/
 ├── docker-compose.yml       # Configuración de servicios en Docker
 ├── .dockerignore            # Archivos a ignorar en el entorno
 └── .env                     # Variables de entorno
 ⚙️ Configuración de docker-compose.yml
-A continuación se muestra la configuración definida para los servicios en el entorno de trabajo:
-
 yaml
 Copiar
+Editar
+# La configuración de Docker Compose define los servicios necesarios
 services:
   d_next:
     image: nikoxing/mi-proyecto:v1.0.0  # Usa la imagen ya construida en Docker Hub
@@ -49,62 +53,64 @@ services:
     networks:
       - app_network
 
+# Definición de volúmenes
 volumes:
   mysql_data:
 
+# Definición de redes
 networks:
   app_network:
 📂 Configuración de .dockerignore
-El siguiente archivo especifica qué archivos y directorios deben ser ignorados al construir la imagen:
-
 dockerignore
 Copiar
-# Ignora dependencias de Node.js
+Editar
+# Este archivo especifica los archivos y directorios que deben ser ignorados al construir la imagen
+
+# Ignorar dependencias de Node.js
 node_modules
 
-# Ignora archivos de compilación de Next.js
+# Ignorar archivos de compilación de Next.js
 .next
 
-# Ignora archivos de entorno
+# Ignorar archivos de entorno
 .env
 .env.local
 .env.development
 .env.production
 
-# Ignora archivos de Git
+# Ignorar archivos de Git
 .git
 .gitignore
 
-# Ignora logs innecesarios
+# Ignorar logs innecesarios
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Ignora caches de npm y yarn
+# Ignorar caches de npm y yarn
 .npm
 .yarn
 .pnpm-store
 
-# Ignora configuraciones de editores de código
+# Ignorar configuraciones de editores de código
 .vscode/
 .idea/
 .DS_Store
 
-# Ignora archivos de compilación y pruebas
+# Ignorar archivos de compilación y pruebas
 dist
 out
 coverage
 
-# Ignora archivos de configuración innecesarios
+# Ignorar archivos de configuración innecesarios
 .dockerignore
 docker-compose.override.yml
 ⚙️ Configuración de .env
-Este archivo contiene las variables de entorno para el entorno de desarrollo:
-
 ini
 Copiar
-# Configuración del entorno de desarrollo
+Editar
+# Define las variables de entorno para el entorno de desarrollo
 NODE_ENV=development
 
 # Credenciales de MySQL
@@ -113,11 +119,11 @@ MYSQL_DATABASE=my_database
 MYSQL_USER=user
 MYSQL_PASSWORD=password
 🔥 Descargar y Usar la Imagen desde Docker Hub
-🛠️ Construcción, Subida y Uso de la Imagen Docker en Docker Hub
-Sigue los siguientes comandos para construir, subir y utilizar la imagen de Docker:
-
 sh
 Copiar
+Editar
+# 🛠️ Construcción, Subida y Uso de la Imagen Docker en Docker Hub
+
 # Inicia sesión en Docker Hub
 docker login
 
@@ -130,12 +136,8 @@ docker images
 # Sube la imagen a Docker Hub
 docker push nikoxing/mi-proyecto
 
-# Descarga la imagen (pull)
+# Descarga la imagen desde Docker Hub
 docker pull nikoxing/mi-proyecto
 
 # Levanta los servicios en segundo plano, reconstruyendo si es necesario
 docker-compose up -d --build
-🚀 Resumen
-El manual está completamente comentado y optimizado para facilitar la puesta en marcha y el mantenimiento del entorno en Docker. Utiliza la configuración proporcionada para asegurar que el entorno funcione correctamente, con un enfoque en la estabilidad y el rendimiento.
-
-¡Listo para ejecutar y desarrollar!
