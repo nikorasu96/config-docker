@@ -134,16 +134,16 @@ MYSQL_PASSWORD=password
 docker login
 
 # Construye la imagen con la etiqueta correspondiente
-docker build -t nikoxing/mi-proyecto .
+docker build -t nikoxing/mi-proyecto:v1.0.0 .
 
 # Verifica que la imagen se haya construido
 docker images
 
 # Sube la imagen a Docker Hub
-docker push nikoxing/mi-proyecto
+docker push nikoxing/mi-proyecto:v1.0.0
 
 # Descarga la imagen desde Docker Hub
-docker pull nikoxing/mi-proyecto
+docker pull nikoxing/mi-proyecto:v1.0.0
 
 # Levanta los servicios en segundo plano, reconstruyendo si es necesario
 docker-compose up -d --build
