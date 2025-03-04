@@ -1,24 +1,24 @@
-# mi-proyecto
+# 📌 mi-proyecto
 
 Este repositorio contiene el entorno de trabajo en Docker para el proyecto, permitiendo ejecutar la aplicación sin necesidad de disponer de todos los archivos del proyecto base.
 
 ---
 
 ## 3️⃣ Estructura del Entorno de Trabajo
-
 Este es el entorno donde se ejecuta el proyecto en Docker.
 
 ### 📂 Estructura de Archivos
-
-```bash
+```
 mi-proyecto/
 ├── docker-compose.yml       # Configuración de servicios en Docker
 ├── .dockerignore            # Archivos a ignorar en el entorno
 └── .env                     # Variables de entorno
-⚙️ Configuración de docker-compose.yml
-yaml
-Copiar
-Editar
+```
+
+---
+
+## ⚙️ Configuración de `docker-compose.yml`
+```yaml
 # La configuración de Docker Compose define los servicios necesarios
 services:
   d_next:
@@ -60,10 +60,12 @@ volumes:
 # Definición de redes
 networks:
   app_network:
-📂 Configuración de .dockerignore
-dockerignore
-Copiar
-Editar
+```
+
+---
+
+## 📂 Configuración de `.dockerignore`
+```dockerignore
 # Este archivo especifica los archivos y directorios que deben ser ignorados al construir la imagen
 
 # Ignorar dependencias de Node.js
@@ -106,10 +108,12 @@ coverage
 # Ignorar archivos de configuración innecesarios
 .dockerignore
 docker-compose.override.yml
-⚙️ Configuración de .env
-ini
-Copiar
-Editar
+```
+
+---
+
+## ⚙️ Configuración de `.env`
+```ini
 # Define las variables de entorno para el entorno de desarrollo
 NODE_ENV=development
 
@@ -118,10 +122,12 @@ MYSQL_ROOT_PASSWORD=root
 MYSQL_DATABASE=my_database
 MYSQL_USER=user
 MYSQL_PASSWORD=password
-🔥 Descargar y Usar la Imagen desde Docker Hub
-sh
-Copiar
-Editar
+```
+
+---
+
+## 🔥 Descargar y Usar la Imagen desde Docker Hub
+```sh
 # 🛠️ Construcción, Subida y Uso de la Imagen Docker en Docker Hub
 
 # Inicia sesión en Docker Hub
@@ -141,3 +147,9 @@ docker pull nikoxing/mi-proyecto
 
 # Levanta los servicios en segundo plano, reconstruyendo si es necesario
 docker-compose up -d --build
+```
+
+---
+
+📌 **¡Listo! Ahora tu proyecto puede ejecutarse en Docker sin problemas!** 🚀
+
